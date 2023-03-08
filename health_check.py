@@ -33,4 +33,3 @@ schedule.every(10).seconds.do(get_status)
 while True:
     schedule.run_pending()
     time.sleep(1)
-
