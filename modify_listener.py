@@ -1,7 +1,13 @@
 import boto3
 import botocore.exceptions
+from os import environ
 
-client = boto3.client('elbv2')
+client = boto3.client('elbv2',
+  aws_access_key_id=environ['AWS_ACCESS_KEY_ID'],
+  aws_secret_access_key=environ['AWS_SECRET_ACCESS_KEY'],
+  region_name=environ['AWS_REGION'],
+  aws_session_token=environ['AWS_SESSION_TOKEN'])
+
 elb = client.describe_load_balancers()
 get_elb = elb['LoadBalancers']
 lstn_arns = []
@@ -25,6 +31,6 @@ for arn in lstn_arns:
             ListenerArn=arn,
             # SslPolicy='ELBSecurityPolicy-FS-1-2-Res-2020-10'
         )
-        print(f'{arn} listner modified')
+        print(f'{arn} LISTENER MODIFIED')
     except botocore.exceptions.ClientError:
         print('A certificate must be specified for HTTPS listeners')
