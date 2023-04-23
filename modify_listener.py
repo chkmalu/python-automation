@@ -24,7 +24,6 @@ for lb in get_elb:
         if ltn['Protocol'] == 'HTTP':
             lstn_arns.append(ltn['ListenerArn'])
 
-
 for arn in lstn_arns:
     try:
         response = client.modify_listener(

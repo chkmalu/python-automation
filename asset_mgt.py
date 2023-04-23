@@ -46,12 +46,10 @@ for instn in get_ec2['Reservations']:
     for id in instance:
         ec2.append(id['InstanceId'])
 
-
 for arn in get_ecs_arn['clusterArns']:
     get_ecs = client_fxn('ecs').describe_clusters(clusters=[arn])
     for clst_name  in get_ecs['clusters']:
         ecs.append(clst_name['clusterName'])
-
 
 for cache in get_elc['CacheClusters']:
     elc.append(cache['CacheClusterId'])
@@ -59,9 +57,7 @@ for cache in get_elc['CacheClusters']:
 for lb in get_elb['LoadBalancers']:
     elb.append(lb['LoadBalancerName'])
 
-
-
 df = pd.DataFrame.from_dict(assets, orient='index')
 df = df.transpose()
-df.to_excel('Approve AWS Assests.xlsx')
+df.to_csv('Approve AWS Assests.csv')
 print(df)
