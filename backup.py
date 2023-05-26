@@ -15,7 +15,7 @@ get_vol = client.describe_volumes(Filters=[
 def backup():
     for vol in get_vol:
         vol_tag = (vol['Tags'])
-        #get the volume the tag to tag th snapshot
+        #get the volume the tag to tag the snapshot
         for tag in vol_tag:
             name = tag['Key']
             value = tag['Value']
