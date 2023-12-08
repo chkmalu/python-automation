@@ -1,9 +1,10 @@
 import boto3
+import os
 
 client = boto3.client('ec2')
 ec2_rosource = boto3.resource('ec2')
 
-int_id = 'i-0aa3bc265b59224bb'
+int_id = os.environment['INT_ID']
 
 #get the volume id to determine the snapshot associated to it
 vol_id = client.describe_volumes(
