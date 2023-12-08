@@ -2,7 +2,7 @@ import requests
 import smtplib
 import os
 
-url = 'http://44.203.31.191:8080'
+url = os.environ['URL']
 get_status = requests.get(url).status_code
 
 def send_mail(txt):
@@ -21,14 +21,3 @@ except Exception as expt:
     print(f"applicatoin not reachable with error {expt}")
     msg = "can reach application kindly restart the server"
     send_mail(msg)
-
-
-
-
-
-
-
-# with smtplib.SMTP_SSL('smtp.gmail.com', 465) as sm:
-#         sm.login('chkmalu@gmail.com','przvgrjsyhhztinr')
-#         msg = "Subject: testing\nthe application is down with please restart"
-#         sm.sendmail('chkmalu@gmail.com', 'chkmalu@gmail.com', msg)
